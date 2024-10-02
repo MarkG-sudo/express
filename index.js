@@ -1,5 +1,12 @@
 import express from 'express';
+import mongoose from 'mongoose';
 import todoRouter from './routes/todo.js';
+import userRouter from './routes/user.js';
+
+
+// Connect to database
+await mongoose.connect('mongodb+srv://todo-api:todo-api@growproject.n5aq8.mongodb.net/todo-db?retryWrites=true&w=majority&appName=GROWProject');
+
 
 // create an express app 
 const app = express();
@@ -17,7 +24,11 @@ const app = express();
 // })
 
 // Use routes 
+// app.use(todoRouter, userRouter);
+
 app.use(todoRouter);
+app.use(userRouter);
+
 
 
 // Listen for incoming requests
